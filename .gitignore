@@ -1,0 +1,18 @@
+# Build output
+.hvigor/
+build/
+.preview/
+.cxx/
+oh_modules/
+*.hap
+*.har
+*.hsp
+
+# IDE
+.idea/
+.vscode/
+local.properties
+
+# OS
+.DS_Store
+Thumbs.db

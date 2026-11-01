@@ -1,0 +1,8 @@
+{
+  "string": [
+    {
+      "name": "ics_parser_desc",
+      "value": "iCalendar parser and recurrence expander"
+    }
+  ]
+}
