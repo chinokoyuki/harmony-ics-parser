@@ -24,10 +24,10 @@ Stage 模型，ArkTS。模块的目标 SDK 为 6.1.1(24)，实现只用到 ECMAS
 把模块放在工程旁边，用路径引用：
 
 ```json5
-// oh-package.json5
+// entry/oh-package.json5
 {
   "dependencies": {
-    "@chinokoyuki/ics-parser": "file:../harmony-ics-parser"
+    "@chinokoyuki/ics-parser": "file:../harmony-ics-parser/library"
   }
 }
 ```
@@ -114,21 +114,38 @@ for (const event of events) {
 
 ```
 harmony-ics-parser/
-├── Index.ets                      对外导出
-├── src/main/ets/
-│   ├── IcsTypes.ets               事件、提醒、规则的接口定义
-│   ├── IcsParser.ets              行处理与解析
-│   └── Recurrence.ets             RRULE 展开
-├── src/test/                      hypium 测试
-├── examples/IcsDemo/              可运行的 Stage 工程示例
-└── src/main/module.json5          HAR 模块描述
+├── library/                       库本体，也是 ohpm 发布的内容
+│   ├── Index.ets                  对外导出
+│   └── src/main/ets/
+│       ├── IcsTypes.ets           事件、提醒、规则的接口定义
+│       ├── IcsParser.ets          行处理与解析
+│       └── Recurrence.ets         RRULE 展开
+├── library/src/test/              hypium 测试
+└── entry/                         示例工程
 ```
 
-`examples/IcsDemo` 会解析一段内置日历并列出展开结果。用 DevEco Studio 打开即可，也可以按该目录下 README 里的命令构建。
+## 示例工程
+
+`entry/` 解析一段写在源码里的日历，按固定的 2026 年 8 月区间展开并列出结果。区间写死，输出不随运行时间变化。
+
+```powershell
+$env:DEVECO_SDK_HOME = "E:\DevEco Studio\sdk"
+$env:PATH = "E:\DevEco Studio\jbr\bin;" + $env:PATH
+& "E:\DevEco Studio\tools\ohpm\bin\ohpm.bat" install
+& "E:\DevEco Studio\tools\hvigor\bin\hvigorw.bat" --no-daemon assembleHap --mode module -p product=default -p module=entry@default
+```
+
+产物在 `entry/build/default/outputs/default/entry-default-unsigned.hap`。
+
+### 构建时的警告
+
+没配签名时会打印 `No signingConfig found for product default`，这是正常的。要在 DevEco Studio 里配一份签名才能装到设备上。
+
+hvigor 还可能多打印两条本地模块的提示：`Missing module info for local modules ...` 和 `The version number ... does not comply with the SemVer specification`。原因是 ohpm 包名和模块名对不上。不影响产物，HAP 里的 `ets/modules.abc` 能找到 `expandOccurrences` 和 `parseIcsDateTime`。
 
 ## 测试
 
-测试位于 `src/test`，使用 `@ohos/hypium`。在一个引用了本模块的 Stage 工程里运行即可，`examples/IcsDemo` 就是现成的宿主工程。通过 DevEco Studio 的测试任务或 hvigor 启动。
+测试位于 `library/src/test`，使用 `@ohos/hypium`。在示例工程里跑，或放进任何引用了本模块的 Stage 工程。通过 DevEco Studio 的测试任务或 hvigor 启动。
 
 ## 许可证
 

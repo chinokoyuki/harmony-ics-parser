@@ -1,12 +1,11 @@
 {
   "module": {
     "name": "ics_parser",
-    "type": "shared",
+    "type": "har",
     "description": "$string:ics_parser_desc",
     "deviceTypes": [
       "phone",
       "tablet"
-    ],
-    "deliveryWithInstall": true
+    ]
   }
 }

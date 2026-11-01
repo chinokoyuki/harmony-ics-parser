@@ -24,10 +24,10 @@ Stage model, ArkTS. The module targets SDK 6.1.1(24) and only uses ECMAScript bu
 Keep the module next to your project and reference it by path:
 
 ```json5
-// oh-package.json5
+// entry/oh-package.json5
 {
   "dependencies": {
-    "@chinokoyuki/ics-parser": "file:../harmony-ics-parser"
+    "@chinokoyuki/ics-parser": "file:../harmony-ics-parser/library"
   }
 }
 ```
@@ -114,21 +114,38 @@ for (const event of events) {
 
 ```
 harmony-ics-parser/
-├── Index.ets                      public exports
-├── src/main/ets/
-│   ├── IcsTypes.ets               interfaces for events, alarms, rules
-│   ├── IcsParser.ets              line handling and parsing
-│   └── Recurrence.ets             RRULE expansion
-├── src/test/                      hypium tests
-├── examples/IcsDemo/              runnable stage-model app
-└── src/main/module.json5          HAR module manifest
+├── library/                       the module, and what ohpm publishes
+│   ├── Index.ets                  public exports
+│   └── src/main/ets/
+│       ├── IcsTypes.ets           interfaces for events, alarms, rules
+│       ├── IcsParser.ets          line handling and parsing
+│       └── Recurrence.ets         RRULE expansion
+├── library/src/test/              hypium tests
+└── entry/                         sample app
 ```
 
-`examples/IcsDemo` parses an embedded calendar and lists its occurrences. Open it in DevEco Studio, or follow the commands in its own README.
+## Sample app
+
+`entry/` parses a calendar embedded in its source, expands the rules over a fixed August 2026 window and lists the occurrences. The window is fixed so the output does not depend on when the app runs.
+
+```powershell
+$env:DEVECO_SDK_HOME = "E:\DevEco Studio\sdk"
+$env:PATH = "E:\DevEco Studio\jbr\bin;" + $env:PATH
+& "E:\DevEco Studio\tools\ohpm\bin\ohpm.bat" install
+& "E:\DevEco Studio\tools\hvigor\bin\hvigorw.bat" --no-daemon assembleHap --mode module -p product=default -p module=entry@default
+```
+
+The output is `entry/build/default/outputs/default/entry-default-unsigned.hap`.
+
+### Build warnings
+
+A build without a signing profile prints `No signingConfig found for product default`. That is expected. Add a signing profile in DevEco Studio if you want to install the HAP on a device.
+
+hvigor may also print two notes about the local module: `Missing module info for local modules ...` and `The version number ... does not comply with the SemVer specification`. Both come from the ohpm package name not matching the module name. They do not change the output; `ets/modules.abc` in the HAP contains `expandOccurrences` and `parseIcsDateTime`.
 
 ## Tests
 
-Tests live in `src/test` and use `@ohos/hypium`. Run them from a stage-model project that references this module; `examples/IcsDemo` is one. Start the module's test task in DevEco Studio or through hvigor.
+Tests live in `library/src/test` and use `@ohos/hypium`. Run them from the sample project, or from any stage-model project that references the module. Start the module's test task in DevEco Studio or through hvigor.
 
 ## License
 

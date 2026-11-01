@@ -1,9 +1,43 @@
 {
-  "apiType": "stageMode",
-  "buildOption": {},
-  "targets": [
+  "app": {
+    "products": [
+      {
+        "name": "default",
+        "targetSdkVersion": "26.0.0",
+        "compatibleSdkVersion": "6.1.1(24)",
+        "runtimeOS": "HarmonyOS"
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug"
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
     {
-      "name": "default"
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ics_parser",
+      "srcPath": "./library",
+      "targets": [
+        {
+          "name": "default"
+        }
+      ]
     }
   ]
 }

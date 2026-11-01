@@ -11,7 +11,7 @@ Include the smallest `.ics` snippet that reproduces the issue, plus the expected
 - Keep the module free of runtime dependencies.
 - ArkTS strict mode applies. Avoid `any`, `unknown` and type assertions.
 - Parse and expand separately. Anything that touches the file system, UI or network belongs in the consuming app.
-- Add a test in `src/test` for new behaviour. Tests use `@ohos/hypium`.
+- Add a test in `library/src/test` for new behaviour. Tests use `@ohos/hypium`.
 - Update `CHANGELOG.md` under an "Unreleased" heading.
 
 ## Style

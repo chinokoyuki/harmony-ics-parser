@@ -4,6 +4,7 @@ build/
 .preview/
 .cxx/
 oh_modules/
+BuildProfile.ets
 *.hap
 *.har
 *.hsp
