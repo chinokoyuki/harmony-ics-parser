@@ -128,7 +128,7 @@ harmony-ics-parser/
 
 ## Tests
 
-Tests live in `src/test` and use `@ohos/hypium`. This repository ships the library module only, without a host app. To run the suite, reference the module from a stage-model project, then start the module's test task in DevEco Studio or through hvigor.
+Tests live in `src/test` and use `@ohos/hypium`. Run them from a stage-model project that references this module; `examples/IcsDemo` is one. Start the module's test task in DevEco Studio or through hvigor.
 
 ## License
 

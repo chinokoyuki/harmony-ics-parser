@@ -128,7 +128,7 @@ harmony-ics-parser/
 
 ## 测试
 
-测试位于 `src/test`，使用 `@ohos/hypium`。仓库只包含库模块，没有宿主工程。要跑测试，先在 Stage 模型工程里引用这个模块，再通过 DevEco Studio 的测试任务或 hvigor 启动。
+测试位于 `src/test`，使用 `@ohos/hypium`。在一个引用了本模块的 Stage 工程里运行即可，`examples/IcsDemo` 就是现成的宿主工程。通过 DevEco Studio 的测试任务或 hvigor 启动。
 
 ## 许可证
 
