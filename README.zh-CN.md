@@ -120,8 +120,11 @@ harmony-ics-parser/
 │   ├── IcsParser.ets              行处理与解析
 │   └── Recurrence.ets             RRULE 展开
 ├── src/test/                      hypium 测试
+├── examples/IcsDemo/              可运行的 Stage 工程示例
 └── src/main/module.json5          HAR 模块描述
 ```
+
+`examples/IcsDemo` 会解析一段内置日历并列出展开结果。用 DevEco Studio 打开即可，也可以按该目录下 README 里的命令构建。
 
 ## 测试
 

@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Example application for harmony-ics-parser"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Parses a sample calendar and lists its occurrences"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ICS Parser Demo"
+    }
+  ]
+}

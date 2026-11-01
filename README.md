@@ -120,8 +120,11 @@ harmony-ics-parser/
 │   ├── IcsParser.ets              line handling and parsing
 │   └── Recurrence.ets             RRULE expansion
 ├── src/test/                      hypium tests
+├── examples/IcsDemo/              runnable stage-model app
 └── src/main/module.json5          HAR module manifest
 ```
+
+`examples/IcsDemo` parses an embedded calendar and lists its occurrences. Open it in DevEco Studio, or follow the commands in its own README.
 
 ## Tests
 
